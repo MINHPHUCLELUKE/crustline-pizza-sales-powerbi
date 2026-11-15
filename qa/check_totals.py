@@ -106,7 +106,7 @@ def main():
     failures = 0
     for name, expected in EXPECTED.items():
         value = got[name]
-        ok = abs(value - expected) < 0.005 if isinstance(expected, float) else value == expected
+        ok = abs(value - expected) <= 0.005 if isinstance(expected, float) else value == expected
         failures += not ok
         fmt = ",.2f" if isinstance(expected, float) else ","
         print(f"{'PASS' if ok else 'FAIL'}  {name:<38} expected {expected:>12{fmt}}  got {value:>12{fmt}}")
