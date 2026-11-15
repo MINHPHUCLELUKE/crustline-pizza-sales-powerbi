@@ -1,0 +1,15 @@
+# Power BI files go to the GitHub Release, not the repository
+*.pbix
+*.pbit
+*.pbip
+.pbi/
+
+# Source data is not included
+*.csv
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
