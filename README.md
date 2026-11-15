@@ -68,7 +68,7 @@ Page 1 (Overview) is shown at the top. The other five pages:
 Orders are stored once in `Dim_Order` (with date, hour and the gap since the previous order) and order lines in `Fact_OrderLines`. `Dim_Date` filters orders. `Dim_Pizza` filters order lines and, through `Bridge_Pizza_Ingredient`, `Dim_Ingredient`, so ingredient volumes are the pizzas sold that contain each ingredient. That bridge is many to many and filters in both directions. Details are in [`powerbi/data_model.md`](powerbi/data_model.md).
 
 ## How the numbers were checked
-Totals were recomputed from the raw CSV with a separate script (rows, orders, pizzas, revenue, trading days, anomaly count, single and multi orders, category and size splits). Other figures were checked against the sum of their parts (weekday, hour, size), order counts across four different splits, the time-gap buckets against orders minus first orders of each day and the correlation recomputed by formula. All 23 checks in [`docs/qa_checklist.md`](docs/qa_checklist.md) pass, and the list says what was not checked. Problems found along the way are recorded in [`docs/data_quality_report.md`](docs/data_quality_report.md), for example a garbled ingredient name and a simple average price that disagreed with the units actually sold.
+Totals were recomputed from the raw CSV with a separate script, [`qa/check_totals.py`](qa/check_totals.py), which you can run on your own copy of the file (33 checks: rows, orders, pizzas, revenue, trading days, anomaly count, single and multi orders, category and size splits). Other figures were checked against the sum of their parts (weekday, hour, size), order counts across four different splits, the time-gap buckets against orders minus first orders of each day and the correlation recomputed by formula. All 23 checks in [`docs/qa_checklist.md`](docs/qa_checklist.md) pass, and the list says what was not checked. Problems found along the way are recorded in [`docs/data_quality_report.md`](docs/data_quality_report.md), for example a garbled ingredient name and a simple average price that disagreed with the units actually sold.
 
 ## Decisions and limitations
 - **One year only:** the data covers 2015, so there is no year-on-year view. The first and last week of the year are partial weeks.
@@ -99,6 +99,7 @@ Totals were recomputed from the raw CSV with a separate script (rows, orders, pi
 |---|---|
 | `powerbi/` | Power Query steps, data model, all DAX measures, report guide |
 | `docs/` | Findings, definitions, data dictionary, data quality report, QA checklist, ERD, screenshots and report PDF |
+| `qa/` | `check_totals.py`, a script that recomputes the headline figures from the raw CSV |
 
 ## Tools
 Power BI Desktop, Power Query (M), DAX.
