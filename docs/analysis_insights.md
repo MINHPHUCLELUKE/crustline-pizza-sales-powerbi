@@ -5,7 +5,7 @@ All figures are for 1 January to 31 December 2015 and come from the Power BI mod
 ## 1. Overview: a steady year
 
 - **Totals:** $817,860 revenue, 49,574 pizzas, 21,350 orders. Average order value is $38.31 and the average order holds 2.32 pizzas.
-- **Monthly revenue** stays in a narrow band: $64.0K (October) to $72.6K (July). There is no growth trend and no strong seasonality. The three weakest months in total are September ($64.2K), October ($64.0K) and December ($64.7K), but September and October have empty days. Per trading day the months run from $2,157 (December) to $2,370 (October), within about 7%, and December is the weakest.
+- **Monthly revenue** stays in a narrow band: $64.0K (October) to $72.6K (July). There is no growth trend and no strong seasonality. The three weakest months in total are September ($64.2K), October ($64.0K) and December ($64.7K), but September and October have empty days. Per trading day the months run from $2,157 (December) to $2,370 (October), within about 10% of each other, and December is the weakest.
 - **Category mix of revenue:** Classic $220.1K (26.9%), Supreme $208.2K (25.5%), Chicken $195.9K (24.0%), Veggie $193.7K (23.7%). The four categories are within about three points of each other.
 - **Best sellers by revenue:** Thai Chicken ($43.4K), Barbecue Chicken ($42.8K), California Chicken ($41.4K), Classic Deluxe ($38.2K) and Spicy Italian ($34.8K). Chicken pizzas take three of the top five revenue places.
 
