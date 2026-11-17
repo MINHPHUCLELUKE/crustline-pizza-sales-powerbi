@@ -2,7 +2,7 @@
 
 An end-to-end Power BI project on one year of pizza orders for a fictional pizza maker and distributor: a raw CSV imported untouched, cleaned and shaped in Power Query, modeled as a star schema with a many-to-many ingredient bridge, measured in DAX and delivered as a six-page interactive report. Headline figures were recomputed from the raw CSV outside Power BI and the rest were checked for internal consistency (see the QA checklist).
 
-![](docs/screenshots/01_overview.png)
+![Overview page of the Crustline Power BI report](docs/screenshots/01_overview.png)
 
 **Start here:** [Report PDF](docs/Crustline_Pizza_report.pdf) | [Report file (Releases)](../../releases) | [Findings](docs/analysis_insights.md) | [Power Query steps](powerbi/power_query.md) | [DAX measures](powerbi/dax_measures.md) | [Definitions](docs/definitions.md) | [QA checklist](docs/qa_checklist.md)
 
@@ -48,13 +48,13 @@ Page 1 (Overview) is shown at the top. The other five pages:
 
 <table>
 <tr>
-<td width="33%"><a href="docs/screenshots/02_trends_anomalies.png"><img src="docs/screenshots/02_trends_anomalies.png"></a><br><b>2. Trends</b><br>Weekly and daily revenue and the 16 anomaly days.</td>
-<td width="33%"><a href="docs/screenshots/03_day_and_hour.png"><img src="docs/screenshots/03_day_and_hour.png"></a><br><b>3. Day & Hour</b><br>Busiest days and hours, and the time between orders.</td>
-<td width="33%"><a href="docs/screenshots/04_products.png"><img src="docs/screenshots/04_products.png"></a><br><b>4. Products</b><br>Top and bottom pizzas, category ranking, units by size.</td>
+<td width="33%"><a href="docs/screenshots/02_trends_anomalies.png"><img src="docs/screenshots/02_trends_anomalies.png" alt="Trends and anomalies page"></a><br><b>2. Trends</b><br>Weekly and daily revenue and the 16 anomaly days.</td>
+<td width="33%"><a href="docs/screenshots/03_day_and_hour.png"><img src="docs/screenshots/03_day_and_hour.png" alt="Day and hour page"></a><br><b>3. Day & Hour</b><br>Busiest days and hours, and the time between orders.</td>
+<td width="33%"><a href="docs/screenshots/04_products.png"><img src="docs/screenshots/04_products.png" alt="Products page"></a><br><b>4. Products</b><br>Top and bottom pizzas, category ranking, units by size.</td>
 </tr>
 <tr>
-<td width="33%"><a href="docs/screenshots/05_ingredients.png"><img src="docs/screenshots/05_ingredients.png"></a><br><b>5. Ingredients</b><br>Ingredient volumes and price against units sold.</td>
-<td width="33%"><a href="docs/screenshots/06_orders.png"><img src="docs/screenshots/06_orders.png"></a><br><b>6. Orders</b><br>Single and multi pizza orders, order value, time since the last order.</td>
+<td width="33%"><a href="docs/screenshots/05_ingredients.png"><img src="docs/screenshots/05_ingredients.png" alt="Ingredients page"></a><br><b>5. Ingredients</b><br>Ingredient volumes and price against units sold.</td>
+<td width="33%"><a href="docs/screenshots/06_orders.png"><img src="docs/screenshots/06_orders.png" alt="Orders page"></a><br><b>6. Orders</b><br>Single and multi pizza orders, order value, time since the last order.</td>
 <td width="33%"></td>
 </tr>
 </table>
@@ -63,7 +63,7 @@ Page 1 (Overview) is shown at the top. The other five pages:
 - **No Power BI?** A PDF of all six pages is in [`docs/Crustline_Pizza_report.pdf`](docs/Crustline_Pizza_report.pdf).
 
 ## Data model
-![](docs/erd.png)
+![Data model diagram](docs/erd.png)
 
 Orders are stored once in `Dim_Order` (with date, hour and the gap since the previous order) and order lines in `Fact_OrderLines`. `Dim_Date` filters orders. `Dim_Pizza` filters order lines and, through `Bridge_Pizza_Ingredient`, `Dim_Ingredient`, so ingredient volumes are the pizzas sold that contain each ingredient. That bridge is many to many and filters in both directions. Details are in [`powerbi/data_model.md`](powerbi/data_model.md).
 
