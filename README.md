@@ -1,6 +1,6 @@
 # Crustline | Pizza sales analysis in Power BI
 
-An end-to-end Power BI project on one year of pizza orders for a fictional pizza maker and distributor: a raw CSV imported untouched, cleaned and shaped in Power Query, modeled as a star schema with a many-to-many ingredient bridge, measured in DAX and delivered as a six-page interactive report. Headline figures were recomputed from the raw CSV outside Power BI and the rest were checked for internal consistency (see the QA checklist).
+An end-to-end Power BI project on one year of pizza orders for a fictional pizza maker and distributor: a raw CSV imported untouched, cleaned and shaped in Power Query, modeled as a star schema (with the date table attached to orders) and a many-to-many ingredient bridge, measured in DAX and delivered as a six-page interactive report. Headline figures were recomputed from the raw CSV outside Power BI and the rest were checked for internal consistency (see the QA checklist).
 
 ![Overview page of the Crustline Power BI report](docs/screenshots/01_overview.png)
 
@@ -14,7 +14,7 @@ An end-to-end Power BI project on one year of pizza orders for a fictional pizza
 
 ## What this project shows
 - **Power Query:** one raw CSV imported as is, then typed, text-cleaned, size names derived, ingredients split into rows, a garbled ingredient name repaired and an order-to-order time gap built, all in M.
-- **Data modeling:** star schema with a marked date table, a many-to-many bridge between pizzas and ingredients, hidden keys and helper columns, and display folders for measures.
+- **Data modeling:** star schema with a marked date table that filters orders rather than order lines, a many-to-many bridge between pizzas and ingredients, hidden keys and helper columns, and display folders for measures.
 - **DAX:** 37 measures for KPIs, anomaly detection (z-score over daily revenue), rankings, shares, order behaviour, peak hour and day, and a hand-written Pearson correlation.
 - **Analysis:** trends and anomalies, day and hour demand, product and size mix, ingredient popularity, price against volume, order size and time between orders.
 - **Report design:** custom theme and palette, left navigation, synced date and category slicers, one fixed colour per pizza category, and a short takeaway under each analysis page.
@@ -65,7 +65,7 @@ Page 1 (Overview) is shown at the top. The other five pages:
 ## Data model
 ![Data model diagram](docs/erd.png)
 
-Orders are stored once in `Dim_Order` (with date, hour and the gap since the previous order) and order lines in `Fact_OrderLines`. `Dim_Date` filters orders. `Dim_Pizza` filters order lines and, through `Bridge_Pizza_Ingredient`, `Dim_Ingredient`, so ingredient volumes are the pizzas sold that contain each ingredient. That bridge is many to many and filters in both directions. Details are in [`powerbi/data_model.md`](powerbi/data_model.md).
+Orders are stored once in `Dim_Order` (with date, hour and the gap since the previous order) and order lines in `Fact_OrderLines`. `Dim_Date` filters orders, which filter order lines, so the date table is snowflaked through `Dim_Order` rather than joined to the fact table; dates belong to orders, not lines. `Dim_Pizza` filters order lines. `Dim_Ingredient` filters `Bridge_Pizza_Ingredient`, which passes the filter on to `Dim_Pizza` (the only both-direction relationship) and from there to the order lines, so ingredient volumes are the pizzas sold that contain each ingredient. Details are in [`powerbi/data_model.md`](powerbi/data_model.md).
 
 ## How the numbers were checked
 Totals were recomputed from the raw CSV with a separate script, [`qa/check_totals.py`](qa/check_totals.py), which you can run on your own copy of the file (33 checks: rows, orders, pizzas, revenue, trading days, anomaly count, single and multi orders, category and size splits). Other figures were checked against the sum of their parts (weekday, hour, size), order counts across four different splits, the time-gap buckets against orders minus first orders of each day and the correlation recomputed by formula. All 23 checks in [`docs/qa_checklist.md`](docs/qa_checklist.md) pass, and the list says what was not checked. Problems found along the way are recorded in [`docs/data_quality_report.md`](docs/data_quality_report.md), for example a garbled ingredient name and a simple average price that disagreed with the units actually sold.
