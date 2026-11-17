@@ -26,7 +26,7 @@ Report figures were checked against independent calculations: sums of parts, sep
 | 20 | Share figures | Size shares of pizzas 29.1%, 31.5%, 38.2%, 1.1%, 0.1%; of revenue 21.8%, 30.5%, 45.9%, 1.7%, 0.1% | Same values | Division outside the model | Pass |
 | 21 | Friday and Sunday average orders per day | 3,538 / 50 Fridays = 70.8; 2,624 / 52 Sundays = 50.5 | 70.76 and 50.46 | Orders divided by trading days of that weekday | Pass |
 | 22 | Cleaned ingredient name | One value `'Nduja Salami`, 937 pizzas | One value, 937 pizzas | Ingredient table and matrix | Pass |
-| 23 | Headline figures against the raw CSV | 48,620 rows, 21,350 orders, 49,574 pizzas, $817,860.05 revenue, 91 pizza ids, 358 trading days, daily average $2,284.53, SD $405.38, 16 anomaly days (11 spikes, 5 drops), 8,201 single and 13,149 multi orders, 8,111 / 6,152 / 3,207 / 3,880 by pizzas per order, category and size totals as in checks 1, 2, 4 and 5 | Same values | [`qa/check_totals.py`](../qa/check_totals.py), reading the CSV directly with no Power Query steps (33 checks, all pass) | Pass |
+| 23 | Headline figures against the raw CSV | 48,620 rows, 21,350 orders, 49,574 pizzas, $817,860.05 revenue, 91 pizza ids, 358 trading days, daily average $2,284.53, SD $405.38, 16 anomaly days (11 spikes, 5 drops), 8,201 single and 13,149 multi orders, 8,111 / 6,152 / 3,207 / 3,880 by pizzas per order, category and size totals as in checks 1, 2, 4 and 5 | Same values | [`qa/check_totals.py`](../qa/check_totals.py), reading the CSV directly with no Power Query steps (38 checks) | Pass |
 
 ## Issues found by these checks, and what changed
 

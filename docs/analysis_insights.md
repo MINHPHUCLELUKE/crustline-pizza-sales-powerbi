@@ -33,6 +33,7 @@ A day is flagged when its revenue is 2 or more standard deviations from the dail
 | Wed 30 Dec | $1,337.80 | 32 | $41.81 | -2.34 | Drop | Southwest Chicken, California Chicken |
 
 - **11 spikes and 5 drops.** The three biggest spikes (15 Oct, 26 Nov, 27 Nov) are above 5 standard deviations and sit at 107 to 115 orders against about 60 on a typical day.
+- **Spikes on consecutive days.** 3 July (z = 2.86) falls the day before 4 July, so the report's Trends caption groups them as 3 to 4 July; 4 July is the larger of the two.
 - **The biggest spikes came from more orders, not bigger baskets.** On 15 Oct, 26 Nov, 27 Nov and 4 Jul the average order value was $36.80 to $40.38, close to the yearly $38.31.
 - **Drops cluster at the end of the year.** Three of the five drops fall between 27 and 30 December, with 25 December having no orders at all. The other drops are Sun 22 Mar and Sun 22 Nov.
 - **Treat the count with care.** If daily revenue were normally distributed, about 4.6% of days (roughly 16 of 358) would fall outside 2 standard deviations by chance, so 16 flagged days is about what chance alone gives. The rule also ignores the weekday pattern: 6 of the 11 spikes are Fridays and 3 of the 5 drops are Sundays, the busiest and quietest days. Only the three days above 5 standard deviations clearly stand out.

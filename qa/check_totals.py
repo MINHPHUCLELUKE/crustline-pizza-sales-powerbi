@@ -48,6 +48,11 @@ EXPECTED = {
     "units L": 18956,
     "units XL": 552,
     "units XXL": 28,
+    "revenue S": 178076.50,
+    "revenue M": 249382.25,
+    "revenue L": 375318.70,
+    "revenue XL": 14076.00,
+    "revenue XXL": 1006.60,
     "days without orders": 7,
 }
 
@@ -66,7 +71,7 @@ def compute(path):
     distinct_per_order = d.groupby("order_id")["pizza_id"].nunique()
     pizzas_per_order = d.groupby("order_id")["quantity"].sum().clip(upper=4)
     by_cat = d.groupby("category").agg(q=("quantity", "sum"), r=("revenue", "sum"))
-    by_size = d.groupby("size")["quantity"].sum()
+    by_size = d.groupby("size").agg(q=("quantity", "sum"), r=("revenue", "sum"))
 
     orders = d["order_id"].nunique()
     got = {
@@ -95,7 +100,8 @@ def compute(path):
         got[f"units {cat}"] = int(by_cat.loc[cat, "q"])
         got[f"revenue {cat}"] = by_cat.loc[cat, "r"]
     for size in ["S", "M", "L", "XL", "XXL"]:
-        got[f"units {size}"] = int(by_size.loc[size])
+        got[f"units {size}"] = int(by_size.loc[size, "q"])
+        got[f"revenue {size}"] = by_size.loc[size, "r"]
     return got
 
 
