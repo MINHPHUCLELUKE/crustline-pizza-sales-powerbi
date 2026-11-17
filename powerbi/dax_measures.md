@@ -80,7 +80,7 @@ The result is -0.95, recomputed outside Power BI in the QA checklist. With four 
 |---|---|---|
 | Single Item Share | `DIVIDE ( [Single Item Orders], [Total Orders] )` | 38.4% |
 | Multi Item Share | `DIVIDE ( [Multi Item Orders], [Total Orders] )` | 61.6% |
-| Avg Turnaround (min) | `AVERAGE ( Dim_Order[gap_min] )` | Minutes since the previous order the same day |
+| Avg Turnaround (min) | `AVERAGE ( Dim_Order[gap_min] )` | Minutes since the previous order the same day. Dim_Order is on the one side of a single-direction relationship, so pizza and category slicers do not filter it: this card and the minutes-between-orders chart always show all categories |
 | Peak Hour | `VAR t = TOPN ( 1, VALUES ( Dim_Order[hour] ), [Total Orders], DESC ) RETURN FORMAT ( MAXX ( t, Dim_Order[hour] ), "00" ) & ":00"` | 12:00 |
 | Peak Day | `CONCATENATEX ( TOPN ( 1, VALUES ( Dim_Date[day_name] ), [Total Orders], DESC ), Dim_Date[day_name] )` | Friday |
 | Avg Orders per Day | `DIVIDE ( [Total Orders], COUNTROWS ( FILTER ( VALUES ( Dim_Date[date] ), [Total Orders] > 0 ) ) )` | Over days with orders |
